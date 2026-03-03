@@ -52,6 +52,9 @@ export async function middleware(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser()
 
+  // Dev bypass — skip auth entirely in development when env flag is set
+  if (process.env.NEXT_PUBLIC_DEV_BYPASS_AUTH === 'true') return response
+
   // Redirect unauthenticated users to login
   if (!user && !isAuthRoute) {
     const locale = pathname.split('/')[1] || defaultLocale
