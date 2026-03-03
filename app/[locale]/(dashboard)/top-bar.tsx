@@ -41,7 +41,7 @@ export async function TopBar({ locale }: TopBarProps) {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-40 bg-bg-base/90 backdrop-blur-md border-b border-border-subtle">
-      <div className="max-w-mobile mx-auto flex items-center justify-between px-4 h-14">
+      <div className="max-w-mobile mx-auto flex items-center justify-between px-4 h-14 lg:max-w-none lg:px-6">
         {/* Date + greeting */}
         <div>
           <p className="text-[11px] text-text-muted font-ui uppercase tracking-wider">

@@ -5,6 +5,7 @@
     "trading": "Trading",
     "content": "Content",
     "more": "More",
+    "modules": "Modules",
     "dev": "Dev Tracker",
     "learning": "Learning",
     "reports": "Reports"
@@ -44,44 +45,91 @@
     "briefing": "Morning Briefing",
     "quickStats": "Quick Stats"
   },
+  "briefing": {
+    "title": "Morning Briefing",
+    "tasks": "Today's Tasks",
+    "noTasks": "No tasks today — enjoy the clear schedule.",
+    "aiSummary": "AI Summary",
+    "aiLoading": "Prioritizing...",
+    "sites": "Site Alerts",
+    "allClear": "All sites online",
+    "trading": "Trading",
+    "notLogged": "Not logged"
+  },
   "wordpress": {
     "title": "WordPress Monitor",
+    "moduleLabel": "WordPress",
     "sites": "Sites",
     "uptime": "Uptime",
     "traffic": "Traffic",
-    "status": "Status"
+    "status": "Status",
+    "statTotal": "Total",
+    "statOnline": "Online",
+    "statOffline": "Offline",
+    "addSite": "Add site",
+    "noSites": "No sites configured yet.",
+    "lastChecked": "Checked"
   },
   "trading": {
     "title": "Trading Journal",
+    "moduleLabel": "Trading",
     "pnl": "P&L",
     "openTrades": "Open Trades",
     "closed": "Closed",
-    "winRate": "Win Rate"
+    "winRate": "Win Rate",
+    "todaySessions": "Today's Sessions",
+    "totalEntries": "Entries (month)",
+    "wins": "Wins",
+    "losses": "Losses",
+    "recentEntries": "Recent Entries",
+    "noEntries": "No trading entries yet."
   },
   "content": {
     "title": "Content Pipeline",
+    "moduleLabel": "Content",
     "pipeline": "Pipeline",
     "drafts": "Drafts",
     "published": "Published",
-    "scheduled": "Scheduled"
+    "scheduled": "Scheduled",
+    "noItems": "No content items yet.",
+    "scheduledFor": "Scheduled"
   },
   "dev": {
     "title": "Dev Tracker",
+    "moduleLabel": "Dev",
     "projects": "Projects",
     "tasks": "Tasks",
     "commits": "Commits",
-    "deployments": "Deployments"
+    "deployments": "Deployments",
+    "noTasks": "No active tasks.",
+    "dailyLog": "Daily Log",
+    "noLog": "No log entry for today.",
+    "logDone": "Done",
+    "logBlocked": "Blocked",
+    "logNext": "Next"
   },
   "learning": {
     "title": "Learning Tracker",
+    "moduleLabel": "Learning",
     "courses": "Courses",
     "progress": "Progress",
-    "streak": "Streak"
+    "streak": "Streak",
+    "todayEntries": "Today",
+    "nothingToday": "Nothing logged today.",
+    "weekBreakdown": "This Week",
+    "recentEntries": "Recent (7 days)",
+    "noEntries": "No entries in the last 7 days."
   },
   "reports": {
     "title": "Auto Reports",
+    "moduleLabel": "Reports",
     "daily": "Daily",
     "weekly": "Weekly",
-    "monthly": "Monthly"
+    "monthly": "Monthly",
+    "notifLog": "Notification Log",
+    "noLogs": "No notification logs yet.",
+    "filterAll": "All",
+    "filterSent": "Sent",
+    "filterFailed": "Failed"
   }
 }

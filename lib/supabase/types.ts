@@ -112,6 +112,21 @@ export interface Database {
         Insert: Omit<Database['public']['Tables']['notification_logs']['Row'], 'id' | 'sent_at'>
         Update: Partial<Database['public']['Tables']['notification_logs']['Insert']>
       }
+      briefing_tasks: {
+        Row: {
+          id: string
+          sheet_row_id: string | null
+          title: string
+          notes: string | null
+          status: 'pending' | 'done'
+          task_date: string
+          ai_priority: number | null
+          synced_at: string
+          created_at: string
+        }
+        Insert: Omit<Database['public']['Tables']['briefing_tasks']['Row'], 'id' | 'created_at'>
+        Update: Partial<Database['public']['Tables']['briefing_tasks']['Insert']>
+      }
     }
     Views: Record<string, never>
     Functions: Record<string, never>
@@ -127,3 +142,4 @@ export type TradingEntry    = Database['public']['Tables']['trading_entries']['R
 export type ContentItem     = Database['public']['Tables']['content_items']['Row']
 export type LearningEntry   = Database['public']['Tables']['learning_entries']['Row']
 export type NotificationLog = Database['public']['Tables']['notification_logs']['Row']
+export type BriefingTask   = Database['public']['Tables']['briefing_tasks']['Row']

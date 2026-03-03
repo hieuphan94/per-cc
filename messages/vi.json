@@ -5,6 +5,7 @@
     "trading": "Giao dịch",
     "content": "Nội dung",
     "more": "Thêm",
+    "modules": "Modules",
     "dev": "Dev Tracker",
     "learning": "Học tập",
     "reports": "Báo cáo"
@@ -44,44 +45,91 @@
     "briefing": "Bản tin sáng",
     "quickStats": "Thống kê nhanh"
   },
+  "briefing": {
+    "title": "Bản tin sáng",
+    "tasks": "Công việc hôm nay",
+    "noTasks": "Không có công việc hôm nay — tận hưởng ngày rảnh!",
+    "aiSummary": "AI Tóm tắt",
+    "aiLoading": "Đang phân tích...",
+    "sites": "Cảnh báo Website",
+    "allClear": "Tất cả website đang hoạt động",
+    "trading": "Giao dịch",
+    "notLogged": "Chưa ghi nhận"
+  },
   "wordpress": {
     "title": "WordPress Monitor",
+    "moduleLabel": "WordPress",
     "sites": "Trang web",
     "uptime": "Thời gian hoạt động",
     "traffic": "Lưu lượng truy cập",
-    "status": "Trạng thái"
+    "status": "Trạng thái",
+    "statTotal": "Tổng",
+    "statOnline": "Hoạt động",
+    "statOffline": "Offline",
+    "addSite": "Thêm site",
+    "noSites": "Chưa có site nào được cấu hình.",
+    "lastChecked": "Kiểm tra"
   },
   "trading": {
     "title": "Nhật ký giao dịch",
+    "moduleLabel": "Giao dịch",
     "pnl": "Lãi/Lỗ",
     "openTrades": "Lệnh đang mở",
     "closed": "Đã đóng",
-    "winRate": "Tỷ lệ thắng"
+    "winRate": "Tỷ lệ thắng",
+    "todaySessions": "Phiên hôm nay",
+    "totalEntries": "Lệnh (tháng)",
+    "wins": "Thắng",
+    "losses": "Thua",
+    "recentEntries": "Lệnh gần đây",
+    "noEntries": "Chưa có lệnh nào."
   },
   "content": {
     "title": "Nội dung",
+    "moduleLabel": "Nội dung",
     "pipeline": "Luồng sản xuất",
     "drafts": "Bản nháp",
     "published": "Đã xuất bản",
-    "scheduled": "Đã lên lịch"
+    "scheduled": "Đã lên lịch",
+    "noItems": "Chưa có nội dung nào.",
+    "scheduledFor": "Lên lịch"
   },
   "dev": {
     "title": "Dev Tracker",
+    "moduleLabel": "Dev",
     "projects": "Dự án",
     "tasks": "Nhiệm vụ",
     "commits": "Commits",
-    "deployments": "Triển khai"
+    "deployments": "Triển khai",
+    "noTasks": "Không có nhiệm vụ đang hoạt động.",
+    "dailyLog": "Nhật ký ngày",
+    "noLog": "Chưa có nhật ký hôm nay.",
+    "logDone": "Hoàn thành",
+    "logBlocked": "Bị chặn",
+    "logNext": "Tiếp theo"
   },
   "learning": {
     "title": "Học tập",
+    "moduleLabel": "Học tập",
     "courses": "Khóa học",
     "progress": "Tiến độ",
-    "streak": "Chuỗi ngày học"
+    "streak": "Chuỗi ngày học",
+    "todayEntries": "Hôm nay",
+    "nothingToday": "Chưa ghi nhận hôm nay.",
+    "weekBreakdown": "Tuần này",
+    "recentEntries": "Gần đây (7 ngày)",
+    "noEntries": "Không có mục nào trong 7 ngày qua."
   },
   "reports": {
     "title": "Báo cáo tự động",
+    "moduleLabel": "Báo cáo",
     "daily": "Hàng ngày",
     "weekly": "Hàng tuần",
-    "monthly": "Hàng tháng"
+    "monthly": "Hàng tháng",
+    "notifLog": "Nhật ký thông báo",
+    "noLogs": "Chưa có thông báo nào.",
+    "filterAll": "Tất cả",
+    "filterSent": "Đã gửi",
+    "filterFailed": "Thất bại"
   }
 }

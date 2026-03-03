@@ -87,7 +87,7 @@ export function BottomNav({ locale }: BottomNavProps) {
       <MoreSheet locale={locale} open={showMore} onClose={() => setShowMore(false)} />
 
       <nav
-        className="fixed bottom-0 left-0 right-0 z-50
+        className="fixed bottom-0 left-0 right-0 z-50 lg:hidden
                    bg-bg-surface/95 backdrop-blur-md
                    border-t border-border-subtle"
         aria-label="Main navigation"
