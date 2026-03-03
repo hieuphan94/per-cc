@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Design token CSS variables ── */
+:root {
+  --font-ui:   'Space Grotesk', system-ui, sans-serif;
+  --font-data: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Dark mode tokens (default) */
+  --color-bg-base:      #080C10;
+  --color-bg-surface:   #0F1419;
+  --color-bg-surface-2: #161D26;
+  --color-bg-surface-3: #1C2533;
+  --color-border-subtle: #1F2D3D;
+  --color-border-muted:  #2A3A4D;
+  --color-text-primary:   #E8EDF2;
+  --color-text-secondary: #8B9BB0;
+  --color-text-muted:     #4A5A6E;
+  --color-accent:  #3DD6F5;
+  --color-success: #22D47A;
+  --color-danger:  #F5564A;
+  --color-warning: #F5A623;
+  --color-purple:  #A78BFA;
+}
+
+/* Light mode overrides */
+.light {
+  --color-bg-base:      #F0F4F8;
+  --color-bg-surface:   #FFFFFF;
+  --color-bg-surface-2: #F7FAFC;
+  --color-bg-surface-3: #EDF2F7;
+  --color-border-subtle: #DDE3EA;
+  --color-border-muted:  #C5D0DC;
+  --color-text-primary:   #0F1419;
+  --color-text-secondary: #4A5A6E;
+  --color-text-muted:     #8B9BB0;
+  --color-accent: #0099B8;
+}
+
+/* ── Base styles ── */
+@layer base {
+  html {
+    font-family: var(--font-ui);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: #080C10;
+    color: #E8EDF2;
+  }
+
+  /* Custom dark scrollbar */
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #080C10;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #1F2D3D;
+    border-radius: 2px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #2A3A4D;
+  }
+}
+
+/* ── Component utilities ── */
+@layer components {
+  /* Pressable card — scale feedback on tap */
+  .card-pressable {
+    @apply transition-transform duration-100 cursor-pointer;
+  }
+  .card-pressable:active {
+    transform: scale(0.98);
+  }
+
+  /* Skeleton shimmer loading state */
+  .skeleton {
+    background: linear-gradient(
+      90deg,
+      #0F1419 25%,
+      #1C2533 50%,
+      #0F1419 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  /* Focus ring matching accent color */
+  .focus-accent:focus-visible {
+    @apply outline-none ring-2 ring-offset-2;
+    ring-color: #3DD6F5;
+    ring-offset-color: #080C10;
+  }
+}
+
+/* ── Keyframe animations ── */
+@keyframes shimmer {
+  from { background-position: -200% 0; }
+  to   { background-position:  200% 0; }
+}
+
+/* Respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .skeleton {
+    animation: none;
+    background: #0F1419;
+  }
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

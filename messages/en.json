@@ -1,0 +1,87 @@
+{
+  "nav": {
+    "home": "Home",
+    "wordpress": "WordPress",
+    "trading": "Trading",
+    "content": "Content",
+    "more": "More",
+    "dev": "Dev Tracker",
+    "learning": "Learning",
+    "reports": "Reports"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "retry": "Retry",
+    "save": "Save",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "search": "Search",
+    "filter": "Filter",
+    "seeAll": "See all",
+    "noData": "No data yet",
+    "success": "Success",
+    "failed": "Failed",
+    "pending": "Pending",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "thisWeek": "This week",
+    "thisMonth": "This month"
+  },
+  "auth": {
+    "login": "Sign in",
+    "logout": "Sign out",
+    "email": "Email",
+    "magicLink": "Send magic link",
+    "checkEmail": "Check your email",
+    "loginDesc": "Enter your email to receive a sign-in link"
+  },
+  "home": {
+    "greeting": "Good morning, Commander",
+    "briefing": "Morning Briefing",
+    "quickStats": "Quick Stats"
+  },
+  "wordpress": {
+    "title": "WordPress Monitor",
+    "sites": "Sites",
+    "uptime": "Uptime",
+    "traffic": "Traffic",
+    "status": "Status"
+  },
+  "trading": {
+    "title": "Trading Journal",
+    "pnl": "P&L",
+    "openTrades": "Open Trades",
+    "closed": "Closed",
+    "winRate": "Win Rate"
+  },
+  "content": {
+    "title": "Content Pipeline",
+    "pipeline": "Pipeline",
+    "drafts": "Drafts",
+    "published": "Published",
+    "scheduled": "Scheduled"
+  },
+  "dev": {
+    "title": "Dev Tracker",
+    "projects": "Projects",
+    "tasks": "Tasks",
+    "commits": "Commits",
+    "deployments": "Deployments"
+  },
+  "learning": {
+    "title": "Learning Tracker",
+    "courses": "Courses",
+    "progress": "Progress",
+    "streak": "Streak"
+  },
+  "reports": {
+    "title": "Auto Reports",
+    "daily": "Daily",
+    "weekly": "Weekly",
+    "monthly": "Monthly"
+  }
+}

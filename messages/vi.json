@@ -1,0 +1,87 @@
+{
+  "nav": {
+    "home": "Trang chủ",
+    "wordpress": "WordPress",
+    "trading": "Giao dịch",
+    "content": "Nội dung",
+    "more": "Thêm",
+    "dev": "Dev Tracker",
+    "learning": "Học tập",
+    "reports": "Báo cáo"
+  },
+  "common": {
+    "loading": "Đang tải...",
+    "error": "Có lỗi xảy ra",
+    "retry": "Thử lại",
+    "save": "Lưu",
+    "cancel": "Hủy",
+    "confirm": "Xác nhận",
+    "delete": "Xóa",
+    "edit": "Chỉnh sửa",
+    "add": "Thêm",
+    "search": "Tìm kiếm",
+    "filter": "Lọc",
+    "seeAll": "Xem tất cả",
+    "noData": "Chưa có dữ liệu",
+    "success": "Thành công",
+    "failed": "Thất bại",
+    "pending": "Đang chờ",
+    "today": "Hôm nay",
+    "yesterday": "Hôm qua",
+    "thisWeek": "Tuần này",
+    "thisMonth": "Tháng này"
+  },
+  "auth": {
+    "login": "Đăng nhập",
+    "logout": "Đăng xuất",
+    "email": "Email",
+    "magicLink": "Gửi liên kết đăng nhập",
+    "checkEmail": "Kiểm tra email của bạn",
+    "loginDesc": "Nhập email để nhận liên kết đăng nhập"
+  },
+  "home": {
+    "greeting": "Xin chào, Commander",
+    "briefing": "Bản tin sáng",
+    "quickStats": "Thống kê nhanh"
+  },
+  "wordpress": {
+    "title": "WordPress Monitor",
+    "sites": "Trang web",
+    "uptime": "Thời gian hoạt động",
+    "traffic": "Lưu lượng truy cập",
+    "status": "Trạng thái"
+  },
+  "trading": {
+    "title": "Nhật ký giao dịch",
+    "pnl": "Lãi/Lỗ",
+    "openTrades": "Lệnh đang mở",
+    "closed": "Đã đóng",
+    "winRate": "Tỷ lệ thắng"
+  },
+  "content": {
+    "title": "Nội dung",
+    "pipeline": "Luồng sản xuất",
+    "drafts": "Bản nháp",
+    "published": "Đã xuất bản",
+    "scheduled": "Đã lên lịch"
+  },
+  "dev": {
+    "title": "Dev Tracker",
+    "projects": "Dự án",
+    "tasks": "Nhiệm vụ",
+    "commits": "Commits",
+    "deployments": "Triển khai"
+  },
+  "learning": {
+    "title": "Học tập",
+    "courses": "Khóa học",
+    "progress": "Tiến độ",
+    "streak": "Chuỗi ngày học"
+  },
+  "reports": {
+    "title": "Báo cáo tự động",
+    "daily": "Hàng ngày",
+    "weekly": "Hàng tuần",
+    "monthly": "Hàng tháng"
+  }
+}
