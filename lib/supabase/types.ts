@@ -1,6 +1,8 @@
 // Supabase database types — mirrors migration 001_initial_schema.sql
 // Regenerate after applying migrations:
 //   npx supabase gen types typescript --project-id <id> > lib/supabase/types.ts
+//
+// NOTE: Relationships: [] required by @supabase/postgrest-js v2 (bundled with supabase-js v2.39+)
 
 export type Json = string | number | boolean | null | { [key: string]: Json } | Json[]
 
@@ -21,6 +23,7 @@ export interface Database {
         }
         Insert: Omit<Database['public']['Tables']['wordpress_sites']['Row'], 'id' | 'created_at'>
         Update: Partial<Database['public']['Tables']['wordpress_sites']['Insert']>
+        Relationships: []
       }
       dev_tasks: {
         Row: {
@@ -35,8 +38,20 @@ export interface Database {
           created_at: string
           updated_at: string
         }
-        Insert: Omit<Database['public']['Tables']['dev_tasks']['Row'], 'id' | 'created_at' | 'updated_at'>
+        Insert: {
+          id?: string
+          sheet_row_id?: string | null
+          title: string
+          description?: string | null
+          status?: 'todo' | 'in_progress' | 'done' | 'blocked'
+          priority?: 'low' | 'medium' | 'high' | null
+          clarification_notes?: string | null
+          synced_at?: string | null
+          created_at?: string
+          updated_at?: string
+        }
         Update: Partial<Database['public']['Tables']['dev_tasks']['Insert']>
+        Relationships: []
       }
       dev_logs: {
         Row: {
@@ -47,8 +62,16 @@ export interface Database {
           next: string[] | null
           created_at: string
         }
-        Insert: Omit<Database['public']['Tables']['dev_logs']['Row'], 'id' | 'created_at'>
+        Insert: {
+          id?: string
+          log_date: string
+          done?: string[] | null
+          blocked?: string[] | null
+          next?: string[] | null
+          created_at?: string
+        }
         Update: Partial<Database['public']['Tables']['dev_logs']['Insert']>
+        Relationships: []
       }
       trading_entries: {
         Row: {
@@ -68,6 +91,7 @@ export interface Database {
         }
         Insert: Omit<Database['public']['Tables']['trading_entries']['Row'], 'id' | 'created_at'>
         Update: Partial<Database['public']['Tables']['trading_entries']['Insert']>
+        Relationships: []
       }
       content_items: {
         Row: {
@@ -85,6 +109,7 @@ export interface Database {
         }
         Insert: Omit<Database['public']['Tables']['content_items']['Row'], 'id' | 'created_at' | 'updated_at'>
         Update: Partial<Database['public']['Tables']['content_items']['Insert']>
+        Relationships: []
       }
       learning_entries: {
         Row: {
@@ -98,6 +123,7 @@ export interface Database {
         }
         Insert: Omit<Database['public']['Tables']['learning_entries']['Row'], 'id' | 'created_at'>
         Update: Partial<Database['public']['Tables']['learning_entries']['Insert']>
+        Relationships: []
       }
       notification_logs: {
         Row: {
@@ -111,6 +137,7 @@ export interface Database {
         }
         Insert: Omit<Database['public']['Tables']['notification_logs']['Row'], 'id' | 'sent_at'>
         Update: Partial<Database['public']['Tables']['notification_logs']['Insert']>
+        Relationships: []
       }
       briefing_tasks: {
         Row: {
@@ -126,11 +153,13 @@ export interface Database {
         }
         Insert: Omit<Database['public']['Tables']['briefing_tasks']['Row'], 'id' | 'created_at'>
         Update: Partial<Database['public']['Tables']['briefing_tasks']['Insert']>
+        Relationships: []
       }
     }
     Views: Record<string, never>
     Functions: Record<string, never>
     Enums: Record<string, never>
+    CompositeTypes: Record<string, never>
   }
 }
 
@@ -142,4 +171,4 @@ export type TradingEntry    = Database['public']['Tables']['trading_entries']['R
 export type ContentItem     = Database['public']['Tables']['content_items']['Row']
 export type LearningEntry   = Database['public']['Tables']['learning_entries']['Row']
 export type NotificationLog = Database['public']['Tables']['notification_logs']['Row']
-export type BriefingTask   = Database['public']['Tables']['briefing_tasks']['Row']
+export type BriefingTask    = Database['public']['Tables']['briefing_tasks']['Row']
