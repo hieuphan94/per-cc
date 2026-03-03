@@ -38,7 +38,9 @@
     "email": "Email",
     "magicLink": "Gửi liên kết đăng nhập",
     "checkEmail": "Kiểm tra email của bạn",
-    "loginDesc": "Nhập email để nhận liên kết đăng nhập"
+    "loginDesc": "Nhập email để nhận liên kết đăng nhập",
+    "password": "Mật khẩu",
+    "passwordOptional": "tuỳ chọn, bỏ qua magic link"
   },
   "home": {
     "greeting": "Xin chào, Commander",
@@ -106,7 +108,12 @@
     "noLog": "Chưa có nhật ký hôm nay.",
     "logDone": "Hoàn thành",
     "logBlocked": "Bị chặn",
-    "logNext": "Tiếp theo"
+    "logNext": "Tiếp theo",
+    "addTask": "Thêm nhiệm vụ",
+    "addTaskPlaceholder": "Tên nhiệm vụ...",
+    "saveLog": "Lưu nhật ký",
+    "editLog": "Chỉnh sửa",
+    "syncSheet": "↻ Đồng bộ sheet"
   },
   "learning": {
     "title": "Học tập",

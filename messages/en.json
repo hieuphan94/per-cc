@@ -38,7 +38,9 @@
     "email": "Email",
     "magicLink": "Send magic link",
     "checkEmail": "Check your email",
-    "loginDesc": "Enter your email to receive a sign-in link"
+    "loginDesc": "Enter your email to receive a sign-in link",
+    "password": "Password",
+    "passwordOptional": "optional, bypasses magic link"
   },
   "home": {
     "greeting": "Good morning, Commander",
@@ -106,7 +108,12 @@
     "noLog": "No log entry for today.",
     "logDone": "Done",
     "logBlocked": "Blocked",
-    "logNext": "Next"
+    "logNext": "Next",
+    "addTask": "Add task",
+    "addTaskPlaceholder": "Task title...",
+    "saveLog": "Save log",
+    "editLog": "Edit",
+    "syncSheet": "↻ Sync sheet"
   },
   "learning": {
     "title": "Learning Tracker",
