@@ -1,6 +1,6 @@
 import { getTranslations } from 'next-intl/server'
 import { format } from 'date-fns'
-import { createClient } from '@/lib/supabase/server'
+import { createAdminClient } from '@/lib/supabase/server'
 import type { DevTask, DevLog } from '@/lib/supabase/types'
 import { AddTaskForm } from './add-task-form'
 import { DailyLogForm } from './daily-log-form'
@@ -12,7 +12,7 @@ type DevLogRow  = Pick<DevLog,  'done' | 'blocked' | 'next'>
 
 export default async function DevPage() {
   const t = await getTranslations('dev')
-  const supabase = await createClient()
+  const supabase = createAdminClient()
   const today = format(new Date(), 'yyyy-MM-dd')
 
   const [tasksResult, logResult] = await Promise.all([
