@@ -4,7 +4,7 @@
 // Handles: Sheets sync, manual add, status toggle, AI prioritization
 
 import { revalidatePath } from 'next/cache'
-import { createClient } from '@/lib/supabase/server'
+import { createAdminClient } from '@/lib/supabase/server'
 import { fetchTodayTasks } from '@/lib/services/google-sheets-service'
 import { prioritizeTasks } from '@/lib/services/briefing-ai-service'
 import { format } from 'date-fns'
@@ -16,7 +16,7 @@ export async function syncFromSheets(): Promise<{ synced: number; error?: string
   const sheetTasks = await fetchTodayTasks()
   if (sheetTasks.length === 0) return { synced: 0 }
 
-  const supabase = await createClient()
+  const supabase = createAdminClient()
   let synced = 0
 
   for (const task of sheetTasks) {
@@ -48,7 +48,7 @@ export async function addTask(formData: FormData): Promise<{ error?: string }> {
 
   if (!title) return { error: 'Title is required' }
 
-  const supabase = await createClient()
+  const supabase = createAdminClient()
   const { error } = await supabase.from('briefing_tasks').insert({
     title,
     priority,
@@ -66,7 +66,7 @@ export async function toggleTaskStatus(
   taskId: string,
   newStatus: 'todo' | 'done' | 'skipped',
 ): Promise<{ error?: string }> {
-  const supabase = await createClient()
+  const supabase = createAdminClient()
   const { error } = await supabase
     .from('briefing_tasks')
     .update({ status: newStatus })
@@ -79,7 +79,7 @@ export async function toggleTaskStatus(
 
 // Run AI prioritization: fetch today's tasks → score with gpt-4-mini → update DB
 export async function aiPrioritize(): Promise<{ scored: number; error?: string }> {
-  const supabase = await createClient()
+  const supabase = createAdminClient()
 
   const { data: tasks, error: fetchErr } = await supabase
     .from('briefing_tasks')

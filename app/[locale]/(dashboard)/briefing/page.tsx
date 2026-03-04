@@ -1,7 +1,7 @@
 // Morning Briefing page — Server Component
 // Fetches today's tasks + domain alerts, passes to interactive Client Components
 
-import { createClient } from '@/lib/supabase/server'
+import { createAdminClient } from '@/lib/supabase/server'
 import type { BriefingTask, WordPressSite } from '@/lib/supabase/types'
 import { format } from 'date-fns'
 import { BriefingAlertStrip } from './briefing-alert-strip'
@@ -9,11 +9,13 @@ import { BriefingTaskList } from './briefing-task-list'
 import { BriefingAddForm } from './briefing-add-form'
 import { BriefingAiButton } from './briefing-ai-button'
 import { BriefingSyncButton } from './briefing-sync-button'
+import { BriefingDevTasksWidget } from './briefing-dev-tasks-widget'
 
 const today = () => format(new Date(), 'yyyy-MM-dd')
 
-export default async function BriefingPage() {
-  const supabase = await createClient()
+export default async function BriefingPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const supabase = createAdminClient()
 
   // Fetch today's tasks ordered by ai_score desc (nulls last), then priority asc
   const { data: rawTasks = [] } = await supabase
@@ -69,6 +71,9 @@ export default async function BriefingPage() {
 
       {/* Manual add form */}
       <BriefingAddForm />
+
+      {/* Dev tasks widget */}
+      <BriefingDevTasksWidget locale={locale} />
     </div>
   )
 }
