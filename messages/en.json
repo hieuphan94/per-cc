@@ -69,21 +69,39 @@
   },
   "wordpress": {
     "title": "WordPress Monitor",
+    "moduleLabel": "WordPress",
     "sites": "Sites",
+    "addSite": "Add site",
+    "noSites": "No sites yet.",
+    "lastChecked": "Last checked",
+    "statOnline": "Online",
+    "statOffline": "Offline",
+    "statTotal": "Total",
     "uptime": "Uptime",
     "traffic": "Traffic",
     "status": "Status"
   },
   "trading": {
     "title": "Trading Journal",
+    "moduleLabel": "Trading",
     "pnl": "P&L",
+    "session": "Session",
+    "wins": "Wins",
+    "losses": "Losses",
+    "noEntries": "No trades yet.",
+    "recentEntries": "Recent trades",
+    "todaySessions": "Today's sessions",
+    "totalEntries": "Total trades",
     "openTrades": "Open Trades",
     "closed": "Closed",
     "winRate": "Win Rate"
   },
   "content": {
     "title": "Content Pipeline",
+    "moduleLabel": "Content",
     "pipeline": "Pipeline",
+    "noItems": "No content items yet.",
+    "scheduledFor": "Scheduled for",
     "drafts": "Drafts",
     "published": "Published",
     "scheduled": "Scheduled"
@@ -115,12 +133,21 @@
   },
   "learning": {
     "title": "Learning Tracker",
+    "moduleLabel": "Learning",
+    "noEntries": "No entries today.",
+    "nothingToday": "Nothing logged today.",
+    "recentEntries": "Recent entries",
+    "todayEntries": "Today",
+    "weekBreakdown": "This week",
     "courses": "Courses",
     "progress": "Progress",
     "streak": "Streak"
   },
   "reports": {
     "title": "Auto Reports",
+    "moduleLabel": "Reports",
+    "noLogs": "No logs yet.",
+    "notifLog": "Notification log",
     "daily": "Daily",
     "weekly": "Weekly",
     "monthly": "Monthly"

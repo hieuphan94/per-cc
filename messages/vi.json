@@ -69,21 +69,39 @@
   },
   "wordpress": {
     "title": "WordPress Monitor",
+    "moduleLabel": "WordPress",
     "sites": "Trang web",
+    "addSite": "Thêm trang web",
+    "noSites": "Chưa có trang web nào.",
+    "lastChecked": "Kiểm tra lần cuối",
+    "statOnline": "Online",
+    "statOffline": "Offline",
+    "statTotal": "Tổng",
     "uptime": "Thời gian hoạt động",
     "traffic": "Lưu lượng truy cập",
     "status": "Trạng thái"
   },
   "trading": {
     "title": "Nhật ký giao dịch",
+    "moduleLabel": "Giao dịch",
     "pnl": "Lãi/Lỗ",
+    "session": "Phiên",
+    "wins": "Thắng",
+    "losses": "Thua",
+    "noEntries": "Chưa có giao dịch nào.",
+    "recentEntries": "Giao dịch gần đây",
+    "todaySessions": "Phiên hôm nay",
+    "totalEntries": "Tổng giao dịch",
     "openTrades": "Lệnh đang mở",
     "closed": "Đã đóng",
     "winRate": "Tỷ lệ thắng"
   },
   "content": {
     "title": "Nội dung",
+    "moduleLabel": "Nội dung",
     "pipeline": "Luồng sản xuất",
+    "noItems": "Chưa có nội dung nào.",
+    "scheduledFor": "Lên lịch lúc",
     "drafts": "Bản nháp",
     "published": "Đã xuất bản",
     "scheduled": "Đã lên lịch"
@@ -115,12 +133,21 @@
   },
   "learning": {
     "title": "Học tập",
+    "moduleLabel": "Học tập",
+    "noEntries": "Chưa có bài học hôm nay.",
+    "nothingToday": "Chưa học gì hôm nay.",
+    "recentEntries": "Bài học gần đây",
+    "todayEntries": "Hôm nay",
+    "weekBreakdown": "Tuần này",
     "courses": "Khóa học",
     "progress": "Tiến độ",
     "streak": "Chuỗi ngày học"
   },
   "reports": {
     "title": "Báo cáo tự động",
+    "moduleLabel": "Báo cáo",
+    "noLogs": "Chưa có nhật ký nào.",
+    "notifLog": "Nhật ký thông báo",
     "daily": "Hàng ngày",
     "weekly": "Hàng tuần",
     "monthly": "Hàng tháng"
