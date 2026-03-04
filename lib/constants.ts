@@ -17,6 +17,7 @@ export const APP_URL =
 // Module route map (locale-relative paths)
 export const MODULE_ROUTES = {
   home:      '/',
+  briefing:  '/briefing',
   wordpress: '/wordpress',
   trading:   '/trading',
   content:   '/content',

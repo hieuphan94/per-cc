@@ -5,7 +5,6 @@
     "trading": "Trading",
     "content": "Content",
     "more": "More",
-    "modules": "Modules",
     "dev": "Dev Tracker",
     "learning": "Learning",
     "reports": "Reports"
@@ -38,9 +37,7 @@
     "email": "Email",
     "magicLink": "Send magic link",
     "checkEmail": "Check your email",
-    "loginDesc": "Enter your email to receive a sign-in link",
-    "password": "Password",
-    "passwordOptional": "optional, bypasses magic link"
+    "loginDesc": "Enter your email to receive a sign-in link"
   },
   "home": {
     "greeting": "Good morning, Commander",
@@ -49,94 +46,62 @@
   },
   "briefing": {
     "title": "Morning Briefing",
-    "tasks": "Today's Tasks",
-    "noTasks": "No tasks today — enjoy the clear schedule.",
-    "aiSummary": "AI Summary",
-    "aiLoading": "Prioritizing...",
-    "sites": "Site Alerts",
-    "allClear": "All sites online",
-    "trading": "Trading",
-    "notLogged": "Not logged"
+    "todayTasks": "Today's Tasks",
+    "syncSheets": "Sync Sheets",
+    "aiPrioritize": "AI Prioritize",
+    "addTask": "Add Task",
+    "taskTitle": "Task title...",
+    "priority": "Priority",
+    "done": "Done",
+    "skipped": "Skipped",
+    "todo": "To do",
+    "noTasks": "No tasks for today. Add one below or sync from Sheets.",
+    "syncing": "Syncing...",
+    "prioritizing": "Prioritizing...",
+    "aiScore": "AI Score",
+    "source": {
+      "sheet": "Sheets",
+      "manual": "Manual"
+    }
   },
   "wordpress": {
     "title": "WordPress Monitor",
-    "moduleLabel": "WordPress",
     "sites": "Sites",
     "uptime": "Uptime",
     "traffic": "Traffic",
-    "status": "Status",
-    "statTotal": "Total",
-    "statOnline": "Online",
-    "statOffline": "Offline",
-    "addSite": "Add site",
-    "noSites": "No sites configured yet.",
-    "lastChecked": "Checked"
+    "status": "Status"
   },
   "trading": {
     "title": "Trading Journal",
-    "moduleLabel": "Trading",
     "pnl": "P&L",
     "openTrades": "Open Trades",
     "closed": "Closed",
-    "winRate": "Win Rate",
-    "todaySessions": "Today's Sessions",
-    "totalEntries": "Entries (month)",
-    "wins": "Wins",
-    "losses": "Losses",
-    "recentEntries": "Recent Entries",
-    "noEntries": "No trading entries yet."
+    "winRate": "Win Rate"
   },
   "content": {
     "title": "Content Pipeline",
-    "moduleLabel": "Content",
     "pipeline": "Pipeline",
     "drafts": "Drafts",
     "published": "Published",
-    "scheduled": "Scheduled",
-    "noItems": "No content items yet.",
-    "scheduledFor": "Scheduled"
+    "scheduled": "Scheduled"
   },
   "dev": {
     "title": "Dev Tracker",
-    "moduleLabel": "Dev",
     "projects": "Projects",
     "tasks": "Tasks",
     "commits": "Commits",
-    "deployments": "Deployments",
-    "noTasks": "No active tasks.",
-    "dailyLog": "Daily Log",
-    "noLog": "No log entry for today.",
-    "logDone": "Done",
-    "logBlocked": "Blocked",
-    "logNext": "Next",
-    "addTask": "Add task",
-    "addTaskPlaceholder": "Task title...",
-    "saveLog": "Save log",
-    "editLog": "Edit",
-    "syncSheet": "↻ Sync sheet"
+    "deployments": "Deployments"
   },
   "learning": {
     "title": "Learning Tracker",
-    "moduleLabel": "Learning",
     "courses": "Courses",
     "progress": "Progress",
-    "streak": "Streak",
-    "todayEntries": "Today",
-    "nothingToday": "Nothing logged today.",
-    "weekBreakdown": "This Week",
-    "recentEntries": "Recent (7 days)",
-    "noEntries": "No entries in the last 7 days."
+    "streak": "Streak"
   },
   "reports": {
     "title": "Auto Reports",
-    "moduleLabel": "Reports",
     "daily": "Daily",
     "weekly": "Weekly",
-    "monthly": "Monthly",
-    "notifLog": "Notification Log",
-    "noLogs": "No notification logs yet.",
-    "filterAll": "All",
-    "filterSent": "Sent",
-    "filterFailed": "Failed"
+    "monthly": "Monthly"
   }
 }
