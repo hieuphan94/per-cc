@@ -129,7 +129,11 @@
     "title": "Title",
     "projects": "Projects",
     "commits": "Commits",
-    "deployments": "Deployments"
+    "deployments": "Deployments",
+    "history": "History",
+    "noHistory": "No completed tasks yet.",
+    "clearAll": "Remove all",
+    "restore": "Restore"
   },
   "learning": {
     "title": "Learning Tracker",

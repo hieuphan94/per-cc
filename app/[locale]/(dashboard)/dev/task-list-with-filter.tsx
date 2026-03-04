@@ -4,28 +4,67 @@ import { useState } from 'react'
 import { TaskCard } from './task-card'
 import type { DevTask } from '@/lib/supabase/types'
 
-type TaskRow = Pick<DevTask, 'id' | 'title' | 'status' | 'priority'>
+type TaskRow = Pick<DevTask, 'id' | 'title' | 'status' | 'priority' | 'description' | 'project' | 'due_date'>
 
 interface Props {
   tasks: TaskRow[]
   noTasksLabel: string
 }
 
-const STATUS_ORDER = ['in_progress', 'todo', 'blocked', 'done'] as const
+const STATUS_ORDER = ['in_progress', 'todo'] as const
 type StatusFilter = typeof STATUS_ORDER[number] | null
 
 const STATUS_COLOR: Record<string, string> = {
   in_progress: 'text-purple',
   todo:        'text-accent',
-  blocked:     'text-danger',
-  done:        'text-success',
 }
 
 const STATUS_RING: Record<string, string> = {
   in_progress: 'ring-purple/40',
   todo:        'ring-accent/40',
-  blocked:     'ring-danger/40',
-  done:        'ring-success/40',
+}
+
+// Group tasks by project name; null project → 'No project' group (shown last)
+function groupByProject(tasks: TaskRow[]): [string, TaskRow[]][] {
+  const map = new Map<string, TaskRow[]>()
+
+  for (const task of tasks) {
+    const key = task.project?.trim() || ''
+    if (!map.has(key)) map.set(key, [])
+    map.get(key)!.push(task)
+  }
+
+  // Named projects first (alphabetical), then no-project group
+  const named   = [...map.entries()].filter(([k]) => k !== '').sort(([a], [b]) => a.localeCompare(b))
+  const unnamed = map.has('') ? [['', map.get('')!] as [string, TaskRow[]]] : []
+  return [...named, ...unnamed]
+}
+
+// Collapsible project section
+function ProjectGroup({ name, tasks }: { name: string; tasks: TaskRow[] }) {
+  const [open, setOpen] = useState(true)
+
+  return (
+    <div>
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        className="flex items-center gap-2 w-full mb-1.5 group"
+      >
+        <span className={`text-[9px] transition-transform duration-150 text-text-muted ${open ? 'rotate-90' : ''}`}>▶</span>
+        <span className="text-[11px] font-semibold font-ui text-text-secondary truncate">
+          {name || 'No project'}
+        </span>
+        <span className="text-[10px] text-text-muted font-data">({tasks.length})</span>
+      </button>
+
+      {open && (
+        <div className="space-y-2 pl-3 border-l border-border-subtle ml-1">
+          {tasks.map((task) => <TaskCard key={task.id} task={task} />)}
+        </div>
+      )}
+    </div>
+  )
 }
 
 export function TaskListWithFilter({ tasks, noTasksLabel }: Props) {
@@ -36,10 +75,9 @@ export function TaskListWithFilter({ tasks, noTasksLabel }: Props) {
     {}
   )
 
-  // Show filtered tasks; if no filter active, show all except done
-  const visible = filter
-    ? tasks.filter((t) => t.status === filter)
-    : tasks.filter((t) => t.status !== 'done')
+  // Apply status filter; if no filter, show all active tasks
+  const filtered = filter ? tasks.filter((t) => t.status === filter) : tasks
+  const groups   = groupByProject(filtered)
 
   function toggleFilter(status: StatusFilter) {
     setFilter((prev) => (prev === status ? null : status))
@@ -47,8 +85,8 @@ export function TaskListWithFilter({ tasks, noTasksLabel }: Props) {
 
   return (
     <>
-      {/* Clickable status summary row */}
-      <div className="grid grid-cols-4 gap-2">
+      {/* Status filter pills */}
+      <div className="grid grid-cols-2 gap-2">
         {STATUS_ORDER.map((status) => {
           const active = filter === status
           return (
@@ -73,15 +111,15 @@ export function TaskListWithFilter({ tasks, noTasksLabel }: Props) {
         })}
       </div>
 
-      {/* Task list — filtered or default (active only) */}
-      {visible.length === 0 ? (
+      {/* Grouped task list */}
+      {filtered.length === 0 ? (
         <div className="bg-bg-surface border border-border-subtle rounded-2xl p-6 text-center">
           <p className="text-sm text-text-muted font-ui">{noTasksLabel}</p>
         </div>
       ) : (
-        <div className="space-y-2">
-          {visible.map((task) => (
-            <TaskCard key={task.id} task={task} />
+        <div className="space-y-4">
+          {groups.map(([project, groupTasks]) => (
+            <ProjectGroup key={project} name={project} tasks={groupTasks} />
           ))}
         </div>
       )}

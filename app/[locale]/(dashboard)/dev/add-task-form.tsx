@@ -43,6 +43,22 @@ export function AddTaskForm() {
                    text-sm text-text-primary placeholder-text-muted font-ui
                    focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30"
       />
+      <div className="grid grid-cols-2 gap-2">
+        <input
+          name="project"
+          placeholder="Project (optional)"
+          className="bg-bg-surface-2 border border-border-muted rounded-xl px-3 py-2
+                     text-sm text-text-primary placeholder-text-muted font-ui
+                     focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30"
+        />
+        <input
+          type="date"
+          name="due_date"
+          className="bg-bg-surface-2 border border-border-muted rounded-xl px-3 py-2
+                     text-sm text-text-primary font-ui focus:outline-none focus:border-accent
+                     focus:ring-1 focus:ring-accent/30 [color-scheme:dark]"
+        />
+      </div>
       <div className="flex items-center gap-2">
         <select
           name="priority"

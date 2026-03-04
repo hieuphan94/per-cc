@@ -48,6 +48,8 @@ export interface Database {
           description: string | null
           status: 'todo' | 'in_progress' | 'done' | 'blocked'
           priority: 'low' | 'medium' | 'high' | null
+          project: string | null
+          due_date: string | null
           clarification_notes: string | null
           synced_at: string | null
           created_at: string
@@ -59,6 +61,8 @@ export interface Database {
           description?: string | null
           status?: 'todo' | 'in_progress' | 'done' | 'blocked'
           priority?: 'low' | 'medium' | 'high' | null
+          project?: string | null
+          due_date?: string | null
           clarification_notes?: string | null
           synced_at?: string | null
         }
@@ -68,6 +72,8 @@ export interface Database {
           description?: string | null
           status?: 'todo' | 'in_progress' | 'done' | 'blocked'
           priority?: 'low' | 'medium' | 'high' | null
+          project?: string | null
+          due_date?: string | null
           clarification_notes?: string | null
           synced_at?: string | null
         }
@@ -77,22 +83,22 @@ export interface Database {
         Row: {
           id: string
           log_date: string
-          done: string[] | null
-          blocked: string[] | null
-          next: string[] | null
+          done: string | null
+          blocked: string | null
+          next: string | null
           created_at: string
         }
         Insert: {
           log_date: string
-          done?: string[] | null
-          blocked?: string[] | null
-          next?: string[] | null
+          done?: string | null
+          blocked?: string | null
+          next?: string | null
         }
         Update: {
           log_date?: string
-          done?: string[] | null
-          blocked?: string[] | null
-          next?: string[] | null
+          done?: string | null
+          blocked?: string | null
+          next?: string | null
         }
         Relationships: []
       }

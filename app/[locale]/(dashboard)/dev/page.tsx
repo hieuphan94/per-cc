@@ -6,21 +6,29 @@ import { AddTaskForm } from './add-task-form'
 import { DailyLogForm } from './daily-log-form'
 import { SyncSheetButton } from './sync-sheet-button'
 import { TaskListWithFilter } from './task-list-with-filter'
+import { TaskHistoryPanel } from './task-history-panel'
 
-type DevTaskRow = Pick<DevTask, 'id' | 'title' | 'status' | 'priority'>
-type DevLogRow  = Pick<DevLog,  'done' | 'blocked' | 'next'>
+type DevTaskRow     = Pick<DevTask, 'id' | 'title' | 'status' | 'priority' | 'description' | 'project' | 'due_date'>
+type DevHistoryRow  = Pick<DevTask, 'id' | 'title' | 'updated_at' | 'created_at'>
+type DevLogRow      = { done: string | null; blocked: string | null; next: string | null }
 
 export default async function DevPage() {
   const t = await getTranslations('dev')
   const supabase = createAdminClient()
   const today = format(new Date(), 'yyyy-MM-dd')
 
-  const [tasksResult, logResult] = await Promise.all([
+  const [tasksResult, historyResult, logResult] = await Promise.all([
     supabase
       .from('dev_tasks')
-      .select('id, title, status, priority')
+      .select('id, title, status, priority, description, project, due_date')
+      .neq('status', 'done')
       .order('status', { ascending: true })
       .order('created_at', { ascending: false }),
+    supabase
+      .from('dev_tasks')
+      .select('id, title, updated_at, created_at')
+      .eq('status', 'done')
+      .order('updated_at', { ascending: false }),
     supabase
       .from('dev_logs')
       .select('done, blocked, next')
@@ -28,8 +36,9 @@ export default async function DevPage() {
       .maybeSingle(),
   ])
 
-  const tasks    = (tasksResult.data ?? []) as DevTaskRow[]
-  const todayLog = logResult.data as DevLogRow | null
+  const tasks      = (tasksResult.data  ?? []) as DevTaskRow[]
+  const doneTasks  = (historyResult.data ?? []) as DevHistoryRow[]
+  const todayLog   = logResult.data as DevLogRow | null
 
   return (
     <div className="space-y-4 pt-4">
@@ -41,6 +50,9 @@ export default async function DevPage() {
         </p>
         <p className="text-lg font-semibold text-text-primary font-ui">{t('title')}</p>
       </div>
+
+      {/* History — done tasks, shown at top for quick access */}
+      <TaskHistoryPanel tasks={doneTasks} />
 
       {/* Tasks section — status cards act as filters, list updates client-side */}
       <section>
@@ -63,8 +75,9 @@ export default async function DevPage() {
         <p className="text-[11px] font-semibold uppercase tracking-widest text-text-muted font-ui mb-2">
           {t('dailyLog')}
         </p>
-        <DailyLogForm date={today} initial={todayLog} />
+        <DailyLogForm date={today} initial={todayLog} tasks={tasks} />
       </section>
+
 
     </div>
   )

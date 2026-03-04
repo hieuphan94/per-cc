@@ -11,13 +11,7 @@ function revalidateDev() {
   revalidatePath('/en/dev')
 }
 
-// Split newline-separated textarea value into a clean string array
-function parseLines(value: FormDataEntryValue | null): string[] {
-  if (!value || typeof value !== 'string') return []
-  return value.split('\n').map((l) => l.trim()).filter(Boolean)
-}
-
-// Status advancement cycle: todo → in_progress → done → todo (or blocked → todo)
+// Status badge click: todo → in_progress → done (moves to history)
 const STATUS_CYCLE: Record<DevTask['status'], DevTask['status']> = {
   todo:        'in_progress',
   in_progress: 'done',
@@ -25,10 +19,19 @@ const STATUS_CYCLE: Record<DevTask['status'], DevTask['status']> = {
   done:        'todo',
 }
 
+// Restore a done task back to in_progress from history
+export async function restoreTask(id: string) {
+  const supabase = createAdminClient()
+  await supabase.from('dev_tasks').update({ status: 'in_progress' }).eq('id', id)
+  revalidateDev()
+}
+
 export async function addDevTask(formData: FormData) {
   const title    = (formData.get('title')    as string | null)?.trim()
   if (!title) return
   const priority = (formData.get('priority') as string | null) || null
+  const project  = (formData.get('project')  as string | null)?.trim() || null
+  const due_date = (formData.get('due_date') as string | null) || null
   const status: DevTask['status'] = 'todo'
 
   // Append to Google Sheet first to get the stable sheet_row_id
@@ -44,9 +47,30 @@ export async function addDevTask(formData: FormData) {
     title,
     status,
     priority:     priority as DevTask['priority'],
-    sheet_row_id: sheetRowId, // null if sheet not configured or append failed
+    project,
+    due_date,
+    sheet_row_id: sheetRowId,
   })
 
+  revalidateDev()
+}
+
+// Update task fields
+export async function updateDevTask(
+  id: string,
+  title: string,
+  description: string | null,
+  project: string | null,
+  due_date: string | null,
+) {
+  if (!title.trim()) return
+  const supabase = createAdminClient()
+  await supabase.from('dev_tasks').update({
+    title: title.trim(),
+    description: description || null,
+    project: project?.trim() || null,
+    due_date: due_date || null,
+  }).eq('id', id)
   revalidateDev()
 }
 
@@ -54,6 +78,13 @@ export async function addDevTask(formData: FormData) {
 export async function deleteDevTask(id: string) {
   const supabase = createAdminClient()
   await supabase.from('dev_tasks').delete().eq('id', id)
+  revalidateDev()
+}
+
+// Delete all done tasks (clear history)
+export async function deleteAllDoneTasks() {
+  const supabase = createAdminClient()
+  await supabase.from('dev_tasks').delete().eq('status', 'done')
   revalidateDev()
 }
 
@@ -147,9 +178,9 @@ export async function syncDevTasksFromSheet(): Promise<{ synced: number; error?:
 
 export async function saveDailyLog(formData: FormData) {
   const date    = formData.get('date') as string
-  const done    = parseLines(formData.get('done'))
-  const blocked = parseLines(formData.get('blocked'))
-  const next    = parseLines(formData.get('next'))
+  const done    = (formData.get('done')    as string | null) || null
+  const blocked = (formData.get('blocked') as string | null) || null
+  const next    = (formData.get('next')    as string | null) || null
 
   const supabase = createAdminClient()
 

@@ -3,57 +3,88 @@
 import { useState } from 'react'
 import { useTranslations } from 'next-intl'
 import { saveDailyLog } from './dev-actions'
+import { RichTextEditor } from './rich-text-editor'
+
+interface TaskHint {
+  title: string
+  status: string
+}
 
 interface Props {
   date: string
-  initial: { done: string[] | null; blocked: string[] | null; next: string[] | null } | null
+  initial: { done: string | null; blocked: string | null; next: string | null } | null
+  tasks?: TaskHint[]
 }
 
 const LOG_FIELDS = [
-  { name: 'done',    colorClass: 'text-success', icon: '✓' },
-  { name: 'blocked', colorClass: 'text-danger',  icon: '✗' },
-  { name: 'next',    colorClass: 'text-accent',  icon: '→' },
-] as const
+  { name: 'done' as const,    colorClass: 'text-success', icon: '✓' },
+  { name: 'blocked' as const, colorClass: 'text-danger',  icon: '✗' },
+  { name: 'next' as const,    colorClass: 'text-accent',  icon: '→' },
+]
 
-// Read-only view of a log section
+// Convert task titles to a simple HTML bullet list
+function taskListHtml(titles: string[]): string {
+  if (!titles.length) return ''
+  return '<ul>' + titles.map((t) => `<li>${t}</li>`).join('') + '</ul>'
+}
+
+// Read-only section — renders stored HTML safely
 function LogSection({
-  label, items, color, icon,
-}: { label: string; items: string[] | null; color: string; icon: string }) {
-  if (!items?.length) return null
+  label, html, color, icon,
+}: { label: string; html: string | null; color: string; icon: string }) {
+  if (!html || html === '<p></p>') return null
   return (
     <div>
-      <p className={`text-[10px] font-semibold uppercase font-ui mb-1 ${color}`}>{label}</p>
-      <ul className="space-y-1">
-        {items.map((item, i) => (
-          <li key={i} className="flex items-start gap-2 text-sm text-text-secondary font-ui">
-            <span className={`${color} mt-0.5 flex-shrink-0`}>{icon}</span>
-            <span>{item}</span>
-          </li>
-        ))}
-      </ul>
+      <p className={`text-[10px] font-semibold uppercase font-ui mb-1 ${color}`}>
+        {icon} {label}
+      </p>
+      <div
+        className="text-sm text-text-secondary font-ui prose-dark"
+        dangerouslySetInnerHTML={{ __html: html }}
+      />
     </div>
   )
 }
 
-export function DailyLogForm({ date, initial }: Props) {
+export function DailyLogForm({ date, initial, tasks = [] }: Props) {
   const t = useTranslations('dev')
-  // Start in edit mode if no log exists yet
+  const [saved, setSaved] = useState(initial)
   const [editing, setEditing] = useState(!initial)
+
+  // When no saved log, pre-populate editors from task statuses
+  const defaults = saved ?? {
+    done:    taskListHtml(tasks.filter((t) => t.status === 'done').map((t) => t.title)),
+    blocked: taskListHtml(tasks.filter((t) => t.status === 'blocked').map((t) => t.title)),
+    next:    taskListHtml(tasks.filter((t) => t.status === 'in_progress' || t.status === 'todo').map((t) => t.title)),
+  }
 
   async function handleSubmit(formData: FormData) {
     await saveDailyLog(formData)
+    setSaved({
+      done:    (formData.get('done')    as string | null) || null,
+      blocked: (formData.get('blocked') as string | null) || null,
+      next:    (formData.get('next')    as string | null) || null,
+    })
     setEditing(false)
   }
 
-  // Read-only display when log is saved
-  if (!editing && initial) {
+  // Read-only display
+  if (!editing && saved) {
+    const isEmpty = !saved.done && !saved.blocked && !saved.next
     return (
       <div className="bg-bg-surface border border-border-subtle rounded-2xl p-4 space-y-3">
-        <LogSection label={t('logDone')}    items={initial.done}    color="text-success" icon="✓" />
-        <LogSection label={t('logBlocked')} items={initial.blocked} color="text-danger"  icon="✗" />
-        <LogSection label={t('logNext')}    items={initial.next}    color="text-accent"  icon="→" />
-        {!initial.done?.length && !initial.blocked?.length && !initial.next?.length && (
+        {isEmpty ? (
           <p className="text-sm text-text-muted font-ui text-center">{t('noLog')}</p>
+        ) : (
+          LOG_FIELDS.map((f) => (
+            <LogSection
+              key={f.name}
+              label={t(`log${f.name.charAt(0).toUpperCase() + f.name.slice(1)}` as 'logDone' | 'logBlocked' | 'logNext')}
+              html={saved[f.name]}
+              color={f.colorClass}
+              icon={f.icon}
+            />
+          ))
         )}
         <button
           type="button"
@@ -66,7 +97,7 @@ export function DailyLogForm({ date, initial }: Props) {
     )
   }
 
-  // Edit form — each textarea is one item per line
+  // Edit form — one rich text editor per section
   return (
     <form
       action={handleSubmit}
@@ -77,16 +108,12 @@ export function DailyLogForm({ date, initial }: Props) {
       {LOG_FIELDS.map((field) => (
         <div key={field.name}>
           <p className={`text-[10px] font-semibold uppercase font-ui mb-1 ${field.colorClass}`}>
-            {t(`log${field.name.charAt(0).toUpperCase() + field.name.slice(1)}` as 'logDone' | 'logBlocked' | 'logNext')}
+            {field.icon} {t(`log${field.name.charAt(0).toUpperCase() + field.name.slice(1)}` as 'logDone' | 'logBlocked' | 'logNext')}
           </p>
-          <textarea
+          <RichTextEditor
             name={field.name}
-            rows={2}
-            defaultValue={initial?.[field.name]?.join('\n') ?? ''}
-            placeholder="One item per line"
-            className="w-full bg-bg-surface-2 border border-border-muted rounded-xl px-3 py-2
-                       text-sm text-text-primary placeholder-text-muted font-ui resize-none
-                       focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30"
+            defaultValue={defaults[field.name] ?? ''}
+            placeholder={t('addTask')}
           />
         </div>
       ))}
@@ -99,7 +126,7 @@ export function DailyLogForm({ date, initial }: Props) {
         >
           {t('saveLog')}
         </button>
-        {initial && (
+        {saved && (
           <button
             type="button"
             onClick={() => setEditing(false)}

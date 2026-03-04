@@ -129,7 +129,11 @@
     "title": "Tiêu đề",
     "projects": "Dự án",
     "commits": "Commits",
-    "deployments": "Triển khai"
+    "deployments": "Triển khai",
+    "history": "Lịch sử",
+    "noHistory": "Chưa có nhiệm vụ nào hoàn thành.",
+    "clearAll": "Xóa tất cả",
+    "restore": "Khôi phục"
   },
   "learning": {
     "title": "Học tập",

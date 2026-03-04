@@ -1,7 +1,7 @@
 import { getTranslations } from 'next-intl/server'
 import { format } from 'date-fns'
 import { vi, enUS } from 'date-fns/locale'
-import Link from 'next/link'
+import { LocaleSwitcher } from './locale-switcher'
 import { signOut } from './actions'
 
 interface TopBarProps {
@@ -37,8 +37,6 @@ export async function TopBar({ locale }: TopBarProps) {
   const now = new Date()
   const dateStr = format(now, 'EEEE, dd/MM', { locale: dateLocale })
 
-  const targetLocale = locale === 'vi' ? 'en' : 'vi'
-
   return (
     <header className="fixed top-0 left-0 right-0 z-40 bg-bg-base/90 backdrop-blur-md border-b border-border-subtle">
       <div className="max-w-mobile mx-auto flex items-center justify-between px-4 h-14 lg:max-w-none lg:px-6">
@@ -54,17 +52,7 @@ export async function TopBar({ locale }: TopBarProps) {
 
         {/* Right actions: language toggle + sign-out */}
         <div className="flex items-center gap-1">
-          <Link
-            href={`/${targetLocale}`}
-            className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-bg-surface-2
-                       border border-border-muted text-xs font-medium text-text-secondary font-ui
-                       active:bg-bg-surface-3 transition-colors min-h-[44px]"
-            aria-label="Switch language"
-          >
-            <span className={locale === 'vi' ? 'text-accent' : 'text-text-muted'}>VI</span>
-            <span className="text-text-muted">/</span>
-            <span className={locale === 'en' ? 'text-accent' : 'text-text-muted'}>EN</span>
-          </Link>
+          <LocaleSwitcher locale={locale} />
 
           <SignOutButton />
         </div>
