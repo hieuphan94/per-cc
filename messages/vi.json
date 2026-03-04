@@ -7,7 +7,8 @@
     "more": "Thêm",
     "dev": "Dev Tracker",
     "learning": "Học tập",
-    "reports": "Báo cáo"
+    "reports": "Báo cáo",
+    "modules": "Modules"
   },
   "common": {
     "loading": "Đang tải...",
@@ -37,7 +38,9 @@
     "email": "Email",
     "magicLink": "Gửi liên kết đăng nhập",
     "checkEmail": "Kiểm tra email của bạn",
-    "loginDesc": "Nhập email để nhận liên kết đăng nhập"
+    "loginDesc": "Nhập email để nhận liên kết đăng nhập",
+    "password": "Mật khẩu",
+    "passwordOptional": "Mật khẩu (tùy chọn)"
   },
   "home": {
     "greeting": "Xin chào, Commander",

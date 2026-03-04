@@ -7,7 +7,8 @@
     "more": "More",
     "dev": "Dev Tracker",
     "learning": "Learning",
-    "reports": "Reports"
+    "reports": "Reports",
+    "modules": "Modules"
   },
   "common": {
     "loading": "Loading...",
@@ -37,7 +38,9 @@
     "email": "Email",
     "magicLink": "Send magic link",
     "checkEmail": "Check your email",
-    "loginDesc": "Enter your email to receive a sign-in link"
+    "loginDesc": "Enter your email to receive a sign-in link",
+    "password": "Password",
+    "passwordOptional": "Password (optional)"
   },
   "home": {
     "greeting": "Good morning, Commander",
