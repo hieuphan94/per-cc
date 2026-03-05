@@ -197,6 +197,12 @@
     "notifLog": "Nhật ký thông báo",
     "daily": "Hàng ngày",
     "weekly": "Hàng tuần",
-    "monthly": "Hàng tháng"
+    "monthly": "Hàng tháng",
+    "generateEod": "Tạo báo cáo cuối ngày",
+    "reportSent": "Đã gửi qua Telegram",
+    "reportGenerated": "Đã tạo báo cáo",
+    "filterAll": "Tất cả",
+    "filterSent": "Đã gửi",
+    "filterFailed": "Thất bại"
   }
 }

@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server'
 import { format } from 'date-fns'
 import { createClient } from '@/lib/supabase/server'
 import type { NotificationLog } from '@/lib/supabase/types'
+import { GenerateReportButton } from './generate-report-button'
 
 type NotifLogRow = Pick<
   NotificationLog,
@@ -62,6 +63,13 @@ export default async function ReportsPage({
         </p>
         <p className="text-lg font-semibold text-text-primary font-ui">{t('title')}</p>
       </div>
+
+      {/* EOD report generator */}
+      <GenerateReportButton
+        labelGenerate={t('generateEod')}
+        labelSent={t('reportSent')}
+        labelSkipped={t('reportGenerated')}
+      />
 
       {/* Status filter tabs */}
       <div className="flex items-center gap-2">

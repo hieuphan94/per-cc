@@ -197,6 +197,12 @@
     "notifLog": "Notification log",
     "daily": "Daily",
     "weekly": "Weekly",
-    "monthly": "Monthly"
+    "monthly": "Monthly",
+    "generateEod": "Generate EOD Report",
+    "reportSent": "Sent to Telegram",
+    "reportGenerated": "Report generated",
+    "filterAll": "All",
+    "filterSent": "Sent",
+    "filterFailed": "Failed"
   }
 }
