@@ -105,7 +105,20 @@
     "totalEntries": "Tổng giao dịch",
     "openTrades": "Lệnh đang mở",
     "closed": "Đã đóng",
-    "winRate": "Tỷ lệ thắng"
+    "winRate": "Tỷ lệ thắng",
+    "addEntry": "Ghi giao dịch",
+    "delete": "Xóa",
+    "save": "Lưu",
+    "cancel": "Hủy",
+    "optional": "tùy chọn",
+    "fieldDate": "Ngày",
+    "fieldMarket": "Thị trường",
+    "fieldDirection": "Hướng",
+    "fieldEntryPrice": "Vào",
+    "fieldExitPrice": "Ra",
+    "fieldLotSize": "Lot",
+    "fieldResult": "Kết quả",
+    "fieldNotes": "Ghi chú"
   },
   "content": {
     "title": "Nội dung",

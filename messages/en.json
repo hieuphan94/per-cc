@@ -105,7 +105,20 @@
     "totalEntries": "Total trades",
     "openTrades": "Open Trades",
     "closed": "Closed",
-    "winRate": "Win Rate"
+    "winRate": "Win Rate",
+    "addEntry": "Log trade",
+    "delete": "Delete",
+    "save": "Save",
+    "cancel": "Cancel",
+    "optional": "optional",
+    "fieldDate": "Date",
+    "fieldMarket": "Market",
+    "fieldDirection": "Direction",
+    "fieldEntryPrice": "Entry",
+    "fieldExitPrice": "Exit",
+    "fieldLotSize": "Lot",
+    "fieldResult": "Result",
+    "fieldNotes": "Notes"
   },
   "content": {
     "title": "Content Pipeline",
