@@ -128,7 +128,17 @@
     "scheduledFor": "Scheduled for",
     "drafts": "Drafts",
     "published": "Published",
-    "scheduled": "Scheduled"
+    "scheduled": "Scheduled",
+    "addIdea": "Add idea",
+    "generateOutline": "AI Outline",
+    "advance": "Advance",
+    "delete": "Delete",
+    "save": "Save",
+    "cancel": "Cancel",
+    "optional": "optional",
+    "fieldTitle": "Title",
+    "fieldType": "Type",
+    "fieldIdea": "Your idea"
   },
   "dev": {
     "title": "Dev Tracker",

@@ -128,7 +128,17 @@
     "scheduledFor": "Lên lịch lúc",
     "drafts": "Bản nháp",
     "published": "Đã xuất bản",
-    "scheduled": "Đã lên lịch"
+    "scheduled": "Đã lên lịch",
+    "addIdea": "Thêm ý tưởng",
+    "generateOutline": "AI Outline",
+    "advance": "Tiến",
+    "delete": "Xóa",
+    "save": "Lưu",
+    "cancel": "Hủy",
+    "optional": "tùy chọn",
+    "fieldTitle": "Tiêu đề",
+    "fieldType": "Loại",
+    "fieldIdea": "Ý tưởng của bạn"
   },
   "dev": {
     "title": "Dev Tracker",
