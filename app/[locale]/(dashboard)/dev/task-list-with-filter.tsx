@@ -35,7 +35,7 @@ function groupByProject(tasks: TaskRow[]): [string, TaskRow[]][] {
   }
 
   // Named projects first (alphabetical), then no-project group
-  const named   = [...map.entries()].filter(([k]) => k !== '').sort(([a], [b]) => a.localeCompare(b))
+  const named   = Array.from(map.entries()).filter(([k]) => k !== '').sort(([a], [b]) => a.localeCompare(b))
   const unnamed = map.has('') ? [['', map.get('')!] as [string, TaskRow[]]] : []
   return [...named, ...unnamed]
 }

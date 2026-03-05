@@ -79,7 +79,18 @@
     "statTotal": "Tổng",
     "uptime": "Thời gian hoạt động",
     "traffic": "Lưu lượng truy cập",
-    "status": "Trạng thái"
+    "status": "Trạng thái",
+    "checkAll": "Kiểm tra tất cả",
+    "checkSite": "Kiểm tra",
+    "delete": "Xóa",
+    "domainExpiry": "Hết hạn domain",
+    "fieldName": "Tên trang web",
+    "fieldUrl": "URL",
+    "fieldWpUser": "WP User",
+    "fieldWpPassword": "App Password",
+    "save": "Lưu",
+    "cancel": "Hủy",
+    "optional": "tùy chọn"
   },
   "trading": {
     "title": "Nhật ký giao dịch",

@@ -18,6 +18,7 @@ export interface Database {
           is_active: boolean
           last_status: 'online' | 'offline' | 'warning' | null
           last_checked_at: string | null
+          domain_expiry_at: string | null
           created_at: string
         }
         Insert: {
@@ -28,6 +29,7 @@ export interface Database {
           is_active?: boolean
           last_status?: 'online' | 'offline' | 'warning' | null
           last_checked_at?: string | null
+          domain_expiry_at?: string | null
         }
         Update: {
           name?: string
@@ -37,6 +39,7 @@ export interface Database {
           is_active?: boolean
           last_status?: 'online' | 'offline' | 'warning' | null
           last_checked_at?: string | null
+          domain_expiry_at?: string | null
         }
         Relationships: []
       }

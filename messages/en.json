@@ -79,7 +79,18 @@
     "statTotal": "Total",
     "uptime": "Uptime",
     "traffic": "Traffic",
-    "status": "Status"
+    "status": "Status",
+    "checkAll": "Check All",
+    "checkSite": "Check",
+    "delete": "Delete",
+    "domainExpiry": "Domain expiry",
+    "fieldName": "Site name",
+    "fieldUrl": "URL",
+    "fieldWpUser": "WP User",
+    "fieldWpPassword": "App Password",
+    "save": "Save",
+    "cancel": "Cancel",
+    "optional": "optional"
   },
   "trading": {
     "title": "Trading Journal",

@@ -1,36 +1,17 @@
 import { getTranslations } from 'next-intl/server'
-import { format } from 'date-fns'
 import { createClient } from '@/lib/supabase/server'
 import type { WordPressSite } from '@/lib/supabase/types'
+import { SiteCard } from './site-card'
+import { AddSiteForm } from './add-site-form'
+import { CheckAllButton } from './check-all-button'
 
-type WpSiteRow = Pick<WordPressSite, 'id' | 'name' | 'url' | 'last_status' | 'last_checked_at'>
+type WpSiteRow = Pick<
+  WordPressSite,
+  'id' | 'name' | 'url' | 'last_status' | 'last_checked_at' | 'domain_expiry_at'
+>
 
 interface WordPressPageProps {
   params: { locale: string }
-}
-
-function StatusDot({ status }: { status: WordPressSite['last_status'] }) {
-  const colorMap: Record<string, string> = {
-    online:  'bg-success',
-    offline: 'bg-danger',
-    warning: 'bg-warning',
-  }
-  const color = status ? (colorMap[status] ?? 'bg-text-muted') : 'bg-text-muted'
-  return <span className={`w-2.5 h-2.5 rounded-full flex-shrink-0 ${color}`} />
-}
-
-function StatusBadge({ status }: { status: WordPressSite['last_status'] }) {
-  const styleMap: Record<string, string> = {
-    online:  'bg-[#22D47A18] text-success',
-    offline: 'bg-[#F5564A18] text-danger',
-    warning: 'bg-[#F5A62318] text-warning',
-  }
-  const cls = status ? (styleMap[status] ?? 'bg-bg-surface-3 text-text-muted') : 'bg-bg-surface-3 text-text-muted'
-  return (
-    <span className={`text-[10px] font-semibold uppercase px-1.5 py-0.5 rounded-full font-ui ${cls}`}>
-      {status ?? 'unknown'}
-    </span>
-  )
 }
 
 export default async function WordPressPage({ params }: WordPressPageProps) {
@@ -40,10 +21,10 @@ export default async function WordPressPage({ params }: WordPressPageProps) {
 
   const { data } = await supabase
     .from('wordpress_sites')
-    .select('id, name, url, last_status, last_checked_at')
+    .select('id, name, url, last_status, last_checked_at, domain_expiry_at')
     .order('name', { ascending: true })
 
-  const sites = (data ?? []) as WpSiteRow[]
+  const sites   = (data ?? []) as WpSiteRow[]
   const total   = sites.length
   const online  = sites.filter((s) => s.last_status === 'online').length
   const offline = sites.filter((s) => s.last_status === 'offline').length
@@ -82,15 +63,22 @@ export default async function WordPressPage({ params }: WordPressPageProps) {
           <p className="text-[11px] font-semibold uppercase tracking-widest text-text-muted font-ui">
             {t('sites')}
           </p>
-          {/* Add site placeholder button */}
-          <button
-            type="button"
-            disabled
-            className="text-[11px] font-semibold font-ui text-mod-wordpress opacity-60
-                       border border-mod-wordpress/20 rounded-lg px-2 py-0.5"
-          >
-            + {t('addSite')}
-          </button>
+          <div className="flex items-center gap-2">
+            {sites.length > 0 && (
+              <CheckAllButton label={t('checkAll')} />
+            )}
+            <AddSiteForm
+              labelAdd={t('addSite')}
+              labelName={t('fieldName')}
+              labelUrl={t('fieldUrl')}
+              labelDomainExpiry={t('domainExpiry')}
+              labelWpUser={t('fieldWpUser')}
+              labelWpPassword={t('fieldWpPassword')}
+              labelSave={t('save')}
+              labelCancel={t('cancel')}
+              labelOptional={t('optional')}
+            />
+          </div>
         </div>
 
         {sites.length === 0 ? (
@@ -100,23 +88,14 @@ export default async function WordPressPage({ params }: WordPressPageProps) {
         ) : (
           <div className="space-y-2">
             {sites.map((site) => (
-              <div
+              <SiteCard
                 key={site.id}
-                className="bg-bg-surface border border-border-subtle rounded-2xl p-3.5
-                           flex items-center gap-3"
-              >
-                <StatusDot status={site.last_status} />
-                <div className="min-w-0 flex-1">
-                  <p className="text-sm font-medium text-text-primary font-ui truncate">{site.name}</p>
-                  <p className="text-[11px] text-text-muted font-data truncate">{site.url}</p>
-                  {site.last_checked_at && (
-                    <p className="text-[10px] text-text-muted font-data mt-0.5">
-                      {t('lastChecked')}: {format(new Date(site.last_checked_at), 'HH:mm dd/MM')}
-                    </p>
-                  )}
-                </div>
-                <StatusBadge status={site.last_status} />
-              </div>
+                site={site}
+                labelCheck={t('checkSite')}
+                labelDelete={t('delete')}
+                labelLastChecked={t('lastChecked')}
+                labelDomainExpiry={t('domainExpiry')}
+              />
             ))}
           </div>
         )}
