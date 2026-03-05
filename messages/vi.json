@@ -179,7 +179,16 @@
     "weekBreakdown": "Tuần này",
     "courses": "Khóa học",
     "progress": "Tiến độ",
-    "streak": "Chuỗi ngày học"
+    "streak": "Chuỗi ngày học",
+    "addEntry": "Ghi lại",
+    "delete": "Xóa",
+    "save": "Lưu",
+    "cancel": "Hủy",
+    "optional": "tùy chọn",
+    "fieldTitle": "Bạn đã học gì?",
+    "fieldType": "Loại",
+    "fieldSource": "Nguồn",
+    "fieldNotes": "Ghi chú"
   },
   "reports": {
     "title": "Báo cáo tự động",

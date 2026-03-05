@@ -179,7 +179,16 @@
     "weekBreakdown": "This week",
     "courses": "Courses",
     "progress": "Progress",
-    "streak": "Streak"
+    "streak": "Streak",
+    "addEntry": "Log",
+    "delete": "Delete",
+    "save": "Save",
+    "cancel": "Cancel",
+    "optional": "optional",
+    "fieldTitle": "What did you learn?",
+    "fieldType": "Type",
+    "fieldSource": "Source",
+    "fieldNotes": "Notes"
   },
   "reports": {
     "title": "Auto Reports",
